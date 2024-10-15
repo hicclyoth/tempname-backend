@@ -28,7 +28,7 @@ app.get('/api/test', async (req, res) => {
 
 //Register
 
-app.post('/api/register', async (req, res) => {
+app.post('/api/signup', async (req, res) => {
     const { username, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -41,6 +41,24 @@ app.post('/api/register', async (req, res) => {
         } catch (error) {
         console.error('Registration error:', error);
         res.status(500).json({ message: 'Server error' });
+    }
+});
+
+app.post('/api/signin', async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+        const result = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
+        const user = result.rows[0];
+
+        if (user && await bcrypt.compare(password, user.password)) {
+            res.status(200).json({ message: 'Sign in successful' });
+        } else {
+            res.status(401).json({ error: 'Invalid username or password' });
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Error signing in' });
     }
 });
 
