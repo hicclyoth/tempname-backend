@@ -15,7 +15,7 @@ app.use(express.json());
 
 app.get('/api/data', async (req, res) => {
     try {
-      const result = await pool.query('SELECT * FROM your_table_name'); // Replace with your actual table name
+      const result = await pool.query('SELECT * FROM login-db'); // Replace with your actual table name
       res.json(result.rows);
     } catch (err) {
       console.error(err);
