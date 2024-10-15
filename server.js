@@ -8,14 +8,14 @@ const cors = require('cors');
 app.use(cors());
 
 const pool = new Pool({
-    connectionString: 'postgresql://postgres:dXCgawKyhMnhjQiJxFQvohWJZrodBObg@postgres.railway.internal:5432/railway'
+    connectionString: 'postgresql://postgres:dXCgawKyhMnhjQiJxFQvohWJZrodBObg@junction.proxy.rlwy.net:16274/railway'
 })
 
 app.use(express.json());
 
 app.get('/api/data', async (req, res) => {
     try {
-      const result = await pool.query('SELECT * FROM "login-db";'); // Replace with your actual table name
+      const result = await pool.query('SELECT * FROM "logindb"'); // Replace with your actual table name
       res.json(result.rows);
     } catch (err) {
       console.error(err);
