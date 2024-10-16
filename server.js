@@ -29,7 +29,7 @@ const authenticateJWT = (req, res, next) => {
 
 // CORS configuration
 const corsOptions = {
-    origin: 'https://tempname.vercel.app/', // Replace with your frontend URL
+    origin: 'https://tempname.vercel.app', // Replace with your frontend URL
     credentials: true // Allow credentials (cookies, authorization headers)
 };
 
