@@ -44,7 +44,7 @@ app.use(session({
     cookie: {
       maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
       httpOnly: true,
-      secure: false, // Set to true if using HTTPS
+      secure: true, // Set to true if using HTTPS
       sameSite: 'lax' // Helps with session handling in cross-origin scenarios
     }
   }));
